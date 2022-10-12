@@ -1,1 +1,36 @@
-<p class="p-5">robot-table works!</p>
+<ng-container *ngIf="!loading; else load">
+
+    <ng-container *ngIf="!failed; else retryPrompt">
+        <div class="m-auto w-75">
+
+            <table class="w-100 table table-dark table-hover table-bordered table-striped">
+                
+                <tbody>
+                    <th>Robot ID</th>
+                    <th>Battery Level</th>
+                    <th>X-Position</th>
+                    <th>Y-Position</th>
+                    <ng-container *ngFor="let robot of robots">
+                        <tr>
+                            <td>{{robot.robotId}}</td>
+                            <td>{{robot.batteryLevel}}</td>
+                            <td>{{robot.x}}</td>
+                            <td>{{robot.y}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+
+            </table>
+        </div>
+    </ng-container>
+        
+    <ng-template #retryPrompt>
+        <p class="py-5">Something went wrong retrieving information about the robots!</p>
+        <button class="btn btn-danger">Retry</button>
+    </ng-template>
+</ng-container>
+
+<ng-template #load>
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</ng-template>
+    
