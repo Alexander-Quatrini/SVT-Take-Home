@@ -1,7 +1,3 @@
-export interface IRobotResponse{
-    response: Robot[],
-}
-
 export interface Robot{
     robotId: number,
     batteryLevel: number,
