@@ -1,0 +1,6 @@
+#slider .noUi-tooltip {
+    display: none;
+}
+#slider .noUi-active .noUi-tooltip {
+    display: block;
+}
