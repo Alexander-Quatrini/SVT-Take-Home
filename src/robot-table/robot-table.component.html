@@ -1,36 +1,38 @@
-<ng-container *ngIf="!loading; else load">
+<div class="m-auto w-75">
+    <ng-container *ngIf="!loading; else load">
 
     <ng-container *ngIf="!failed; else retryPrompt">
-        <div class="m-auto w-75">
 
-            <table class="w-100 table table-dark table-hover table-bordered">
-                
-                <tbody>
-                    <th>Robot ID</th>
-                    <th>Battery Level</th>
-                    <th>X-Position</th>
-                    <th>Y-Position</th>
-                    <ng-container *ngFor="let robot of filteredRobots">
-                        <tr class="{{robot.batteryLevel <= 40 ? 'red-bg' : ''}}">
-                            <td>{{robot.robotId}}</td>
-                            <td class="battery">{{robot.batteryLevel}}</td>
-                            <td>{{robot.x}}</td>
-                            <td>{{robot.y}}</td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-
-            </table>
-        </div>
-    </ng-container>
+            <p class="m-auto text-muted">Click a column header to sort the table by that value!</p>
+            
+                <table class="w-100 table table-dark table-hover table-bordered">
+                    
+                    <tbody>
+                        <th class="pointer" (click)="sortList('Robot ID', true)">{{headerStrings[0]}}</th>
+                        <th class="pointer" (click)="sortList('Battery Level', true)">{{headerStrings[1]}}</th>
+                        <th class="pointer" (click)="sortList('X-Position', true)">{{headerStrings[2]}}</th>
+                        <th class="pointer" (click)="sortList('Y-Position', true)">{{headerStrings[3]}}</th>
+                        <ng-container *ngFor="let robot of filteredRobots">
+                            <tr class="{{robot.batteryLevel <= 40 ? 'red-bg' : ''}}">
+                                <td>{{robot.robotId}}</td>
+                                <td class="battery">{{robot.batteryLevel}}</td>
+                                <td>{{robot.x}}</td>
+                                <td>{{robot.y}}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                    
+                </table>
+        </ng-container>
         
-    <ng-template #retryPrompt>
-        <p class="py-5">Something went wrong retrieving information about the robots!</p>
-        <button (click)="retrieveRobotInfo()" class="btn btn-danger">Retry</button>
+        <ng-template #retryPrompt>
+            <p class="py-5">Something went wrong retrieving information about the robots!</p>
+            <button (click)="retrieveRobotInfo()" class="btn btn-danger">Retry</button>
+        </ng-template>
+    </ng-container>
+    
+    <ng-template #load>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </ng-template>
-</ng-container>
-
-<ng-template #load>
-    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-</ng-template>
+</div>
     

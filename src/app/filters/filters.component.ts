@@ -25,6 +25,12 @@ export class FiltersComponent implements OnInit {
           'min': 1,
           'max': 100
       },
+      pips: {
+        mode: PipsMode.Count,
+        values: 2,
+        density: 0
+
+      },
       tooltips: true,
       format: {
         from: (num) => Number.parseFloat(num),
