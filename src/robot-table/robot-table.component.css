@@ -5,6 +5,7 @@
 
 .table-dark > tbody tr.red-bg td.battery{
     font-weight: bolder;
+    color: black;
 }
 
 .table-dark > tbody tr.red-bg:hover{
