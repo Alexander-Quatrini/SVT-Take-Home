@@ -3,7 +3,7 @@
     <ng-container *ngIf="!failed; else retryPrompt">
         <div class="m-auto w-75">
 
-            <table class="w-100 table table-dark table-hover table-bordered table-striped">
+            <table class="w-100 table table-dark table-hover table-bordered">
                 
                 <tbody>
                     <th>Robot ID</th>
@@ -11,9 +11,9 @@
                     <th>X-Position</th>
                     <th>Y-Position</th>
                     <ng-container *ngFor="let robot of robots">
-                        <tr>
+                        <tr class="{{robot.batteryLevel <= 40 ? 'red-bg' : ''}}">
                             <td>{{robot.robotId}}</td>
-                            <td>{{robot.batteryLevel}}</td>
+                            <td class="battery">{{robot.batteryLevel}}</td>
                             <td>{{robot.x}}</td>
                             <td>{{robot.y}}</td>
                         </tr>
@@ -26,7 +26,7 @@
         
     <ng-template #retryPrompt>
         <p class="py-5">Something went wrong retrieving information about the robots!</p>
-        <button class="btn btn-danger">Retry</button>
+        <button (click)="retrieveRobotInfo()" class="btn btn-danger">Retry</button>
     </ng-template>
 </ng-container>
 

@@ -20,10 +20,7 @@ export class RobotTableComponent implements OnInit {
 
 
   ngOnInit(): void {
-    while(this.robots.length == 0 && this.counter < 3){
       this.retrieveRobotInfo();
-      this.counter++;
-    }
   }
 
   retrieveRobotInfo(): void{

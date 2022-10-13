@@ -1,0 +1,18 @@
+.table-dark > tbody tr.red-bg{
+    background-color: rgba(255,0,0,0.35) !important;
+    --bs-table-bg: transparent;
+}
+
+.table-dark > tbody tr.red-bg td.battery{
+    font-weight: bolder;
+}
+
+.table-dark > tbody tr.red-bg:hover{
+    background-color: rgba(255,0,0,0.5) !important;
+    --bs-table-bg: transparent;
+    --bs-table-hover-bg: transparent;
+}
+
+.table-dark > tbody tr:hover{
+    background-color: var(--bs-table-hover-bg);
+}
