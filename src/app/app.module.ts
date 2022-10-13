@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { APIService } from 'src/services/api.service';
 import { RobotTableComponent } from '../robot-table/robot-table.component';
 import { FiltersComponent } from './filters/filters.component';
+import { FiltersService } from 'src/services/filters.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FiltersComponent } from './filters/filters.component';
     HttpClientModule,
   ],
   providers: [ APIService,
+    FiltersService,
   ],
   bootstrap: [AppComponent]
 })

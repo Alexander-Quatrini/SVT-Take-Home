@@ -1,6 +1,7 @@
 import { ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import  noUiSlider, { PipsMode } from 'noUiSlider';
+import { FiltersService } from 'src/services/filters.service';
 
 @Component({
   selector: 'app-filters',
@@ -10,13 +11,13 @@ import  noUiSlider, { PipsMode } from 'noUiSlider';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private filterService: FiltersService) { }
 
   ngOnInit(): void {
 
     var slider = document.getElementById('slider')!;
 
-    noUiSlider.create(slider, {
+    var sliderEventListener = noUiSlider.create(slider, {
       start: [1, 100],
       connect: true,
       step: 1,
@@ -30,6 +31,11 @@ export class FiltersComponent implements OnInit {
         to: (number) => Math.round(number),
       }
     });
+
+    sliderEventListener.on('set', (values) => {
+      this.filterService.setRange(values.map(Number));
+    });
+
   }
 
 }

@@ -16,7 +16,7 @@ export class FiltersService {
     return this.range.asObservable();
   }
 
-  setRange(x: number, y: number): void{
-    this.range.next([x,y]);
+  setRange(values: number[]): void{
+    this.range.next(values);
   }
 }
