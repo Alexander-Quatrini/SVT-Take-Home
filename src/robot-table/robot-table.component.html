@@ -10,7 +10,7 @@
                     <th>Battery Level</th>
                     <th>X-Position</th>
                     <th>Y-Position</th>
-                    <ng-container *ngFor="let robot of robots">
+                    <ng-container *ngFor="let robot of filteredRobots">
                         <tr class="{{robot.batteryLevel <= 40 ? 'red-bg' : ''}}">
                             <td>{{robot.robotId}}</td>
                             <td class="battery">{{robot.batteryLevel}}</td>

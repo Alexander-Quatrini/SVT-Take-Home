@@ -19,11 +19,12 @@ export class RobotTableComponent implements OnInit {
   loading: boolean = true;
   counter: number = 0;
   range: number[] = [];
+  filteredRobots: Robot[] = [];
 
   ngOnInit(): void {
       this.filterService.getRangeObservable().subscribe((value) => {
         this.range = [...value];
-        console.log(this.range);
+        this.updateFilters();
       })
 
       this.retrieveRobotInfo();
@@ -32,7 +33,8 @@ export class RobotTableComponent implements OnInit {
   retrieveRobotInfo(): void{
     firstValueFrom(this.apiService.retrieveAPIResponse()).then(
       data => {
-        this.robots = data;
+        this.robots = [...data];
+        this.filteredRobots = [...data];
         console.log(this.robots);
         this.failed = false;
         this.loading = false;
@@ -43,6 +45,13 @@ export class RobotTableComponent implements OnInit {
       console.log(error.message);
       this.failed = true;
       this.loading = false;
+    })
+  }
+
+  updateFilters(): void{
+
+    this.filteredRobots = this.robots.filter(robot => {
+      return (robot.robotId >= this.range[0] && robot.robotId <= this.range[1]);
     })
   }
 
